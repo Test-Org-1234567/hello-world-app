@@ -57,11 +57,11 @@ spec:
 
         if (env.TAG_NAME != null) {
         stage('Checkout Workspace') {
-          checkout([$class: 'GitSCM', branches: [[name: "refs/tags/$TAG_NAME"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: '', trackingSubmodules: false]], submoduleCfg: [], userRemoteConfigs: [[url: "https://github.com/hardy047/hello-world-app"]]])
+          checkout([$class: 'GitSCM', branches: [[name: "refs/tags/$TAG_NAME"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: '', trackingSubmodules: false]], submoduleCfg: [], userRemoteConfigs: [[url: "https://github.com/Test-Org-1234567/hello-world-app"]]])
         }
         } else {
         stage('Checkout Workspace') {
-            git url: 'https://github.com/hardy047/hello-world-app', branch: env.BRANCH_NAME
+            git url: 'https://github.com/Test-Org-1234567/hello-world-app', branch: env.BRANCH_NAME
         }
         }
         stage('Dependencies') {
