@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def label = "k8sagent-e2e"
+def label = "k8sagent-e2el"
 def home = "/home/jenkins"
 def workspace = "${home}/workspace/build-jenkins-operator"
 def workdir = "${workspace}/src/github.com/jenkinsci/kubernetes-operator/"
