@@ -16,9 +16,13 @@ spec:
       privileged: true
     env:
     - name: HTTPS_PROXY
-      value: http://172.18.192.4:8080
+      value: http://proxy.ftc5.hpelabs.net:8080
     - name: https_proxy
-      value: http://172.18.192.4:8080
+      value: http://proxy.ftc5.hpelabs.net:8080
+    - name: HTTP_PROXY
+      value: http://proxy.ftc5.hpelabs.net:8080
+    - name: http_proxy
+      value: http://proxy.ftc5.hpelabs.net:8080
     - name: NO_PROXY
       value: localhost,127.0.0.1
     - name: no_proxy
@@ -31,9 +35,13 @@ spec:
     - name: DOCKER_HOST
       value: tcp://localhost:2375 
     - name: HTTPS_PROXY
-      value: http://172.18.192.4:8080
+      value: http://proxy.ftc5.hpelabs.net:8080
     - name: https_proxy
-      value: http://172.18.192.4:8080
+      value: http://proxy.ftc5.hpelabs.net:8080
+    - name: HTTP_PROXY
+      value: http://proxy.ftc5.hpelabs.net:8080
+    - name: http_proxy
+      value: http://proxy.ftc5.hpelabs.net:8080
     - name: NO_PROXY
       value: localhost,127.0.0.1
     - name: no_proxy
@@ -44,9 +52,13 @@ spec:
     tty: true
     env:
     - name: HTTPS_PROXY
-      value: http://172.18.192.4:8080
+      value: http://proxy.ftc5.hpelabs.net:8080
     - name: https_proxy
-      value: http://172.18.192.4:8080
+      value: http://proxy.ftc5.hpelabs.net:8080
+    - name: HTTP_PROXY
+      value: http://proxy.ftc5.hpelabs.net:8080
+    - name: http_proxy
+      value: http://proxy.ftc5.hpelabs.net:8080
     - name: NO_PROXY
       value: localhost,127.0.0.1
     - name: no_proxy
