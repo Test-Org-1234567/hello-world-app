@@ -110,15 +110,15 @@ spec:
         stage('Functional Test') {
             container('docker') {
                  sh '''
-                   apk add curl
-                   curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/v0.5.1/kind-$(uname)-amd64
-                   chmod +x /usr/local/bin/kind
-                   curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.15.3/bin/linux/amd64/kubectl
-                   chmod +x /usr/local/bin/kubectl
-                   kind create cluster --wait 5m
-                   export KUBECONFIG=$(kind get kubeconfig-path)
-                   kind get clusters
-                   kubectl get pod --all-namespaces
+                   #apk add curl
+                   #curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/v0.5.1/kind-$(uname)-amd64
+                   #chmod +x /usr/local/bin/kind
+                   #curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.15.3/bin/linux/amd64/kubectl
+                   #chmod +x /usr/local/bin/kubectl
+                   #kind create cluster --wait 5m
+                   #export KUBECONFIG=$(kind get kubeconfig-path)
+                   #kind get clusters
+                   #kubectl get pod --all-namespaces
                  '''
             }
         }
