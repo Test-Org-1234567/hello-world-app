@@ -23,5 +23,5 @@ spec:
           name: "git-clone"
           resources: {}
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
-          name: ""
+          name: "make-lint"
           resources: {}
