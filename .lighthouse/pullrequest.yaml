@@ -13,6 +13,19 @@ spec:
         stepTemplate:
           image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go-plugin/pullrequest.yaml@versionStream
           name: ""
+          env:
+          - name: HTTPS_PROXY
+            value: http://172.16.0.250:8080
+          - name: HTTP_PROXY
+            value: http://172.16.0.250:8080
+          - name: https_proxy
+            value: http://172.16.0.250:8080
+          - name: http_proxy
+            value: http://172.16.0.250:8080
+          - name: NO_PROXY
+            value: localhost,lighthouse.ci-stack.caas,10.96.0.1,lighthouse-keeper,hook,lighthouse-tekton-controller
+          - name: no_proxy
+            value: localhost,lighthouse.ci-stack.caas,10.96.0.1,lighthouse-keeper,hook,lighthouse-tekton-controller
           resources:
             requests:
               cpu: 400m
