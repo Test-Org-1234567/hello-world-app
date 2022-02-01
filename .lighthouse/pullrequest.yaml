@@ -22,11 +22,9 @@ spec:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
           name: ""
           resources: {}
-        - name: jx-variables
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
+          name: ""
           resources: {}
-    - name: unit-test
-      taskRef:
-        name: golang-test
-      runAfter:
-        - from-build-pack      
+        - name: jx-variables
+          resources: {}   
       
