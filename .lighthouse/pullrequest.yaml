@@ -26,5 +26,5 @@ spec:
           name: "make-lint"
           resources: {}
         - image: uses:tektoncd/catalog/task/golang-build/golang-build.yaml@0.3
-          name: ""
+          name: "build"
           resources: {}
