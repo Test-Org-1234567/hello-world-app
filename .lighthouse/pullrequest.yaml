@@ -20,11 +20,8 @@ spec:
           workingDir: /workspace/source
         steps:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
-          name: ""
+          name: "git-clone"
           resources: {}
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
           name: ""
           resources: {}
-        - name: jx-variables
-          resources: {}   
-      
