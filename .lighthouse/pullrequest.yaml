@@ -25,3 +25,9 @@ spec:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
           name: "make-lint"
           resources: {}
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
+          name: "build-make-linux"
+          resources: {}
+          script: |
+            #!/bin/sh
+            go build ./...
