@@ -25,6 +25,6 @@ spec:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
           name: "make-lint"
           resources: {}
-        - image: uses:tektoncd/catalog/task/golang-build/golang-build.yaml@0.3
+        - image: uses:tektoncd/catalog/task/golang-build/golang-build.yaml@versionStream
           name: "build"
           resources: {}
