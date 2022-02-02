@@ -11,7 +11,7 @@ spec:
       taskSpec:
         metadata: {}
         stepTemplate:
-          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go-plugin/pullrequest.yaml@versionStream
+          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
           name: ""
           resources:
             requests:
@@ -20,20 +20,20 @@ spec:
           workingDir: /workspace/source
         steps:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
-          name: "git-clone"
+          name: git-clone
           resources: {}
-        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
-          name: "make-lint"
+        - name: make-lint
           resources: {}
-        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
-          name: "build-make-linux"
+        - name: "build-make-linux"
           resources: {}
           script: |
             #!/bin/sh
             go build ./...
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/docker/pullrequest.yaml@versionStream
-          name: "build-container-build:hello-world"
+          name: build-container-build:hello-world
           resources: {}
+          script: |
+            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
           env:
           - name: PUSH_CONTAINER_REGISTRY
             value: harbor.ci-stack.caas
