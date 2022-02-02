@@ -34,6 +34,6 @@ spec:
           script: |
             #!/bin/sh
             go build ./...
-        - image: uses:tektoncd/catalog/task/kaniko/0.5/kaniko.yaml@HEAD
+        - image: uses:tektoncd/catalog/task/kaniko/0.3/kaniko.yaml@HEAD
           name: ""
           resources: {}
