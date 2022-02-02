@@ -34,6 +34,17 @@ spec:
           script: |
             #!/bin/sh
             go build ./...
-        - image: uses:tektoncd/catalog/task/kaniko/0.3/kaniko.yaml@HEAD
-          name: ""
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/docker/pullrequest.yaml@versionStream
+          name: "build-container-build:hello-world"
           resources: {}
+          env:
+          - name: PUSH_CONTAINER_REGISTRY
+            value: harbor.ci-stack.caas
+          - name: DOCKER_REGISTRY_ORG
+            value: demo
+          - name: APP_NAME
+            value: hello-world-app
+          - name: VERSION
+            value: $(params.PR_NUMBER)
+          - name: KANIKO_FLAGS 
+            value: --skip-tls-verify
