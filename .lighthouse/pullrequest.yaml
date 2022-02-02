@@ -10,7 +10,7 @@ spec:
       resources: {}
       params:
       - name: IMAGE
-        value: harbor.ci-stack.caas/demo/hello-world-app:$PULL_NUMBER
+        value: harbor.ci-stack.caas/demo/hello-world-app
       taskSpec:
         metadata: {}
         stepTemplate:
