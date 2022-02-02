@@ -31,6 +31,9 @@ spec:
           script: |
             #!/bin/sh
             go build ./...
-        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/docker/pullrequest.yaml@versionStream
-          name: build-container-build:hello-world
+        - image: uses:tektoncd/catalog/task/docker-build/0.1/docker-build.yaml@HEAD
+          name: build-container-build
+          env:
+          - name: image
+            value: harbor.ci-stack.caas/demo/hello-world-app
           resources: {}
