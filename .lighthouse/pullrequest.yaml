@@ -30,7 +30,7 @@ spec:
             #!/bin/sh
             go build ./...
         - image: gcr.io/kaniko-project/executor
-          name: build-container-build:hello-world
+          name: build-container-build
           resources: {}
           script: |
             /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
