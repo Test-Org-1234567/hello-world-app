@@ -9,7 +9,7 @@ spec:
     - name: from-build-pack
       resources: {}
       params:
-      - name: image
+      - name: IMAGE
         value: harbor.ci-stack.caas/demo/hello-world-app:$PULL_NUMBER
       taskSpec:
         metadata: {}
@@ -34,6 +34,6 @@ spec:
           script: |
             #!/bin/sh
             go build ./...
-        - image: uses:tektoncd/catalog/task/docker-build/0.1/docker-build.yaml@HEAD
+        - image: uses:tektoncd/catalog/task/kaniko/0.5/kaniko.yaml@HEAD
           name: ""
           resources: {}
