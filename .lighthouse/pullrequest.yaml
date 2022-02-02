@@ -31,3 +31,6 @@ spec:
           script: |
             #!/bin/sh
             go build ./...
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/docker/pullrequest.yaml@versionStream
+          name: ""
+          resources: {}
