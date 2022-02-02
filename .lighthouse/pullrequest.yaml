@@ -33,6 +33,7 @@ spec:
           name: build-container-build
           resources: {}
           script: |
+            #!/usr/bin/env bash
             /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
           env:
           - name: PUSH_CONTAINER_REGISTRY
