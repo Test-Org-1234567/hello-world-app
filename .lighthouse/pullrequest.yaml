@@ -8,9 +8,6 @@ spec:
     tasks:
     - name: from-build-pack
       resources: {}
-      params:
-      - name: IMAGE
-        value: harbor.ci-stack.caas/demo/hello-world-app
       taskSpec:
         metadata: {}
         stepTemplate:
