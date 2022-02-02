@@ -32,7 +32,7 @@ spec:
             #!/bin/sh
             go build ./...
         - image: uses:tektoncd/catalog/task/docker-build/0.1/docker-build.yaml@HEAD
-          name: build-container-build
+          name: ""
           env:
           - name: image
             value: harbor.ci-stack.caas/demo/hello-world-app
