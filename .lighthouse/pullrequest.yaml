@@ -18,6 +18,9 @@ spec:
               cpu: 400m
               memory: 600Mi
           workingDir: /workspace/source
+        params:
+          - name: image
+            value: harbor.ci-stack.caas/demo/hello-world-app
         steps:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
           name: "git-clone"
@@ -33,7 +36,4 @@ spec:
             go build ./...
         - image: uses:tektoncd/catalog/task/docker-build/0.1/docker-build.yaml@HEAD
           name: ""
-          params:
-          - name: image
-            value: harbor.ci-stack.caas/demo/hello-world-app
           resources: {}
