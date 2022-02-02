@@ -8,6 +8,9 @@ spec:
     tasks:
     - name: from-build-pack
       resources: {}
+      params:
+      - name: image
+        value: harbor.ci-stack.caas/demo/hello-world-app
       taskSpec:
         metadata: {}
         stepTemplate:
@@ -18,9 +21,6 @@ spec:
               cpu: 400m
               memory: 600Mi
           workingDir: /workspace/source
-        params:
-          - name: image
-            value: harbor.ci-stack.caas/demo/hello-world-app
         steps:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
           name: "git-clone"
