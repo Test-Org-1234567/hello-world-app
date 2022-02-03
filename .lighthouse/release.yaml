@@ -6,16 +6,74 @@ metadata:
 spec:
   pipelineSpec:
     tasks:
-    - name: chart
+    - name: calculate-image-tag
+      params:
+      - name: PULL_BASE_REF
+        value: $(params.PULL_BASE_REF)
+      taskSpec:
+        params:
+        - default: master
+          description: the base git reference of the pull request
+          name: PULL_BASE_REF
+          type: string
+        results:
+        - name: tag
+          description: Docker image tag
+        steps:
+        - name: calculate-image-tag
+          image: busybox:1.32
+          command:
+          - /bin/sh
+          args:
+          - -ce
+          - |
+            TAG="$(inputs.params.PULL_BASE_REF)"
+            if [ "$TAG" = "master" ]; then
+              TAG="latest"
+            fi
+            echo -n $TAG > $(results.tag.path)
+    - name: from-build-pack
+      params:
+      - name: tag
+        value: $(tasks.calculate-image-tag.results.tag)
       resources: {}
       taskSpec:
         metadata: {}
         stepTemplate:
-          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go-plugin/release.yaml@versionStream
+          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
           name: ""
-          resources: {}
+          resources:
+            requests:
+              cpu: 400m
+              memory: 600Mi
           workingDir: /workspace/source
         steps:
-        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone.yaml@versionStream
-          name: ""
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
+          name: git-clone
           resources: {}
+        - name: make-lint
+          resources: {}
+        - name: "build-make-linux"
+          resources: {}
+          script: |
+            #!/bin/sh
+            go build -o main cmd/hello-world/main.go
+        - image: gcr.io/kaniko-project/executor:v1.6.0-debug
+          name: build-container-build
+          resources: {}
+          script: |
+            #!/busybox/sh
+            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
+          env:
+          - name: PUSH_CONTAINER_REGISTRY
+            value: harbor.ci-stack.caas
+          - name: DOCKER_REGISTRY_ORG
+            value: demo
+          - name: APP_NAME
+            value: hello-world-app
+          - name: VERSION
+            value: $(inputs.params.tag)
+          - name: KANIKO_FLAGS 
+            value: --skip-tls-verify
+  serviceAccountName: build-bot
+  timeout: 12h0m0s
