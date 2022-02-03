@@ -29,12 +29,21 @@ spec:
           script: |
             #!/bin/sh
             go build -o main cmd/hello-world/main.go
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
+          name: git-clone:author
+          script: |
+            #!/bin/sh
+            cd source
+            ls
+            git show -s --pretty=%an > author
+          resources: {}
         - image: gcr.io/kaniko-project/executor:v1.6.0-debug
           name: build-container-build
           resources: {}
           script: |
             #!/busybox/sh
-            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
+            author=$(cat author)
+            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$author-$VERSION
           env:
           - name: PUSH_CONTAINER_REGISTRY
             value: harbor.ci-stack.caas
