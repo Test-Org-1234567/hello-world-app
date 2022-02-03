@@ -33,6 +33,7 @@ spec:
           name: git-clone:author
           script: |
             #!/bin/sh
+            cd source
             ls
             git show -s --pretty=%an > author
           resources: {}
