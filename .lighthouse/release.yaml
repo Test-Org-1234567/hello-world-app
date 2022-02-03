@@ -39,6 +39,10 @@ spec:
       resources: {}
       taskSpec:
         metadata: {}
+        params:
+        - description: the base git reference of the pull request
+          name: tag
+          type: string
         stepTemplate:
           image: uses:jenkins-x/jx3-pipeline-catalog/tasks/go/pullrequest.yaml@versionStream
           name: ""
