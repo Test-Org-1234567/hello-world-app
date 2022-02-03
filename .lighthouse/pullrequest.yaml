@@ -28,7 +28,7 @@ spec:
           resources: {}
           script: |
             #!/bin/sh
-            go build ./... -o main
+            go build -o main cmd/hello-world/main.go
         - image: gcr.io/kaniko-project/executor:v1.6.0-debug
           name: build-container-build
           resources: {}
