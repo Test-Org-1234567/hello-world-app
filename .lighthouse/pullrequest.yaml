@@ -42,6 +42,7 @@ spec:
           script: |
             #!/busybox/sh
             author=$(cat author)
+            echo $author
             /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$author-$VERSION
           env:
           - name: PUSH_CONTAINER_REGISTRY
