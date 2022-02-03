@@ -33,6 +33,7 @@ spec:
           name: git-clone:author
           script: |
             #!/bin/sh
+            ls
             git show -s --pretty=%an > author
           resources: {}
         - image: gcr.io/kaniko-project/executor:v1.6.0-debug
