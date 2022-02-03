@@ -46,3 +46,5 @@ spec:
             value: $(params.PULL_NUMBER)
           - name: KANIKO_FLAGS 
             value: --skip-tls-verify
+  serviceAccountName: build-bot
+  timeout: 12h0m0s
